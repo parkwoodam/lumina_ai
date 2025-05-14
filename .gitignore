@@ -1,0 +1,24 @@
+# 시스템 파일 무시
+.bash*
+.gitconfig
+.profile
+.sudo_as_admin_successful
+.wget-hsts
+
+# 로그/라이선스/기타
+*.log
+*LICENSE*
+*LICENSES
+*.jsonl
+*.deb
+*.txt
+
+# 가상환경 및 캐시
+__pycache__/
+.vscode-server/
+.cache/
+.jupyter/
+.ssh/
+.dotnet/
+gemma-env/
+git add category/ gemma_test.py main.py post_category/

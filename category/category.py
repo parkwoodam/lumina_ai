@@ -1,5 +1,6 @@
 from pathlib import Path
-from fastapi import FastAPI
+from main import app
+from fastapi import APIRouter
 from pydantic import BaseModel
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
@@ -10,7 +11,7 @@ import torch.nn.functional as F
 from konlpy.tag import Okt
 from collections import Counter, defaultdict
 
-app = FastAPI()
+router = APIRouter()
 
 category_dict = {}
 CATEGORY_PATH = Path(__file__).parent / "category_dict.json"
@@ -123,7 +124,7 @@ class FullInput(BaseModel):
     post: list[str]
     comment: list[str]
 
-@app.post("/recommend")
+@router.post("/recommend")
 def recommend_category(data: FullInput):
     keyword_categories = {}
     gemma_used = {}
@@ -168,5 +169,7 @@ def recommend_category(data: FullInput):
         # "gemma_used": gemma_used,
         # "comments": comment_results,
         # "recommended": recommended
-        "category":recommended
+        "categoryName":recommended
     }
+    
+app.include_router(router)

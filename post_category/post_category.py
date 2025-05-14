@@ -103,6 +103,6 @@ def categorize_post(postContent: str = Form(...), postImageFile: UploadFile = Fi
 
     return {
         "image":caption_text,
-        "categoryname": recommended,
+        "categoryName": recommended,
         "gemma_raw": raw
     }
