@@ -24,4 +24,16 @@ def generate_prediction(post_text: str):
         if match:
             response_text = match.group(1).strip()
 
+    # 시작 부분의 "---" 구분선 제거
+    if re.match(r'^---+\s*', response_text):
+        response_text = re.sub(r'^---+\s*', '', response_text)
+    
+    # 끝부분의 "---" 구분선 제거
+    if re.search(r'\s*---+$', response_text):
+        response_text = re.sub(r'\s*---+$', '', response_text)      
+
+    # "Luna:" 접두사 제거
+    if re.match(r'^Luna\s*:\s*', response_text, re.IGNORECASE):
+        response_text = re.sub(r'^Luna\s*:\s*', '', response_text)
+
     return {"response": response_text}

@@ -1,0 +1,10 @@
+error: lifetime may not live long enough
+ --> tests/ui/static_ref.rs:4:1
+  |
+4 | #[pyfunction]
+  | ^^^^^^^^^^^^^
+  | |
+  | lifetime `'py` defined here
+  | cast requires that `'py` must outlive `'static`
+  |
+  = note: this error originates in the attribute macro `pyfunction` (in Nightly builds, run with -Z macro-backtrace for more info)
